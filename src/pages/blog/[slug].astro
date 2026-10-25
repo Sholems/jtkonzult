@@ -67,7 +67,7 @@ const faqData = post.faqs?.length ? {
 const pageStructuredData = [structuredData, breadcrumbData, ...(faqData ? [faqData] : [])];
 ---
 
-<Layout title={legacyHiringPost ? 'Top Hiring Qualities Nigerian Employers Value' : (post.seoTitle || `${title} — J.T. Resources & Konzult Ltd`)} description={excerpt} ogImage={imageUrl} ogType="article" publishedTime={post.date} modifiedTime={post.modified || post.date} structuredData={pageStructuredData}>
+<Layout title={legacyHiringPost ? 'Top Hiring Qualities Nigerian Employers Value' : (post.seoTitle || `${title} — J.T. Resources & Konzult Ltd`)} description={excerpt} ogImage={imageUrl} ogImageAlt={title} ogImageWidth={1672} ogImageHeight={941} ogImageType="image/webp" ogType="article" publishedTime={post.date} modifiedTime={post.modified || post.date} structuredData={pageStructuredData}>
   <section style={{ background: 'var(--deep-teal)', color: '#fff', padding: '4rem 0' }}>
     <div class="container" style={{ textAlign: 'center', maxWidth: '960px' }}>
       <nav class="breadcrumbs breadcrumbs-light" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/blog">Insights</a><span>/</span><span aria-current="page">Article</span></nav>
