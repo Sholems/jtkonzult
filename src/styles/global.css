@@ -909,7 +909,8 @@ body.menu-open { overflow: hidden; }
 .contact-expectation span { display: block; }
 .contact-expectation span { margin-top: .2rem; color: #64748b; font-size: .82rem; line-height: 1.5; }
 .google-profile-link { display: inline-flex; align-items: center; gap: .55rem; margin-top: 1rem; color: #326664; font-size: .86rem; font-weight: 700; }
-.form-config-notice { margin: 0; padding: .8rem 1rem; border-left: 3px solid #f4b400; background: #fff8df; color: #6b5810; font-size: .82rem; }
+.form-privacy-note { display: flex; align-items: center; gap: .55rem; margin: 0; color: #64748b; font-size: .8rem; }
+.form-privacy-note i { color: var(--green-text); }
 .cf-turnstile { min-height: 65px; max-width: 100%; overflow: hidden; }
 .breadcrumbs { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; margin: 0 0 1.2rem; font-size: .75rem; }
 .breadcrumbs a { font-weight: 700; }
