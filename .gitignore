@@ -1,0 +1,21 @@
+node_modules/
+dist/
+.astro/
+.npm-cache/
+.wrangler/
+.env
+.env.*
+!.env.example
+
+# Local browser and visual-audit artifacts
+.edge-profile*/
+.visual-*/
+*.png
+*.jpg
+!public/**/*.png
+!public/**/*.jpg
+
+# Superseded PHP implementation and internal audit notes
+/*.php
+/analysis.md
+/architect-plan.md

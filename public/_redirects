@@ -1,0 +1,6 @@
+https://www.jtkonzult.com.ng/* https://jtkonzult.com.ng/:splat 301
+/index.php / 301
+/about.php /about/ 301
+/services.php /services/ 301
+/contact.php /contact/ 301
+/blog.php /blog/ 301

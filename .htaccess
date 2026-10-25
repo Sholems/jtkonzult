@@ -1,0 +1,29 @@
+
+RewriteEngine On
+
+# Redirect index.php to root
+RewriteCond %{THE_REQUEST} \s/index\.php[?\s] [NC]
+RewriteRule ^index\.php$ / [R=301,L]
+
+# Redirect direct .php requests (except articulo.php) to extensionless URL
+RewriteCond %{THE_REQUEST} \s/([^.\s]+)\.php[?\s] [NC]
+RewriteCond %{REQUEST_URI} !^/articulo\.php$ [NC]
+RewriteRule ^([^.]+)\.php$ /$1 [R=301,L]
+
+# Single blog post: /blog/slug -> articulo.php?slug=slug
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^blog/([a-zA-Z0-9-_%]+)/?$ articulo.php?slug=$1 [L,QSA]
+
+# Blog listing
+RewriteRule ^blog/?$ blog.php [L]
+
+# Clean URLs for other pages
+RewriteRule ^about/?$ about.php [L]
+RewriteRule ^services/?$ services.php [L]
+RewriteRule ^contact/?$ contact.php [L]
+
+# Generic: serve .php for extensionless requests if file exists
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.]+)$ $1.php [NC,L]

@@ -1,0 +1,83 @@
+---
+import '../styles/global.css';
+import '@fontsource/inter/300.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/poppins/600.css';
+import '@fontsource/poppins/700.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const {
+  title = 'J.T. Resources & Konzult Ltd',
+  description = 'Federally licensed HR management consultancy delivering recruitment, outsourcing, consulting and facility support across Nigeria.',
+  ogImage = 'https://jtkonzult.com.ng/images/site/hero-main.webp',
+  ogType = 'website',
+  publishedTime,
+  modifiedTime,
+  noindex = false,
+  wave = false,
+  structuredData
+} = Astro.props;
+
+const currentUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://jtkonzult.com.ng').toString();
+const organizationData = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': 'https://jtkonzult.com.ng/#organization',
+  name: 'J.T. Resources & Konzult Ltd',
+  url: 'https://jtkonzult.com.ng/',
+  logo: 'https://jtkonzult.com.ng/images/site/logo.png',
+  foundingDate: '1993',
+  email: 'info@jtkonzult.com.ng',
+  telephone: ['+2349157235560', '+2348166738614', '+2347056288547', '+2348030585300'],
+  address: { '@type': 'PostalAddress', streetAddress: 'C/O Wazobia Affrikana Hotel, Emu-Ebendo', addressRegion: 'Delta State', addressCountry: 'NG' },
+  areaServed: { '@type': 'Country', name: 'Nigeria' },
+  sameAs: ['https://web.facebook.com/jtkonzultltd', 'https://www.instagram.com/j.t.konzult_ltd/', 'https://share.google/zfuWYIpMhYKxTiPe9']
+};
+---
+
+<!DOCTYPE html>
+<html lang="en-NG">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
+    <meta name="theme-color" content="#326664" />
+    <title>{title}</title>
+    <link rel="canonical" href={currentUrl} />
+    <link rel="icon" href="/images/site/logo.png" type="image/png" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content="J.T. Resources & Konzult Ltd" />
+    <meta property="og:url" content={currentUrl} />
+    <meta property="og:type" content={ogType} />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+    <meta property="og:site_name" content="J.T. Resources & Konzult Ltd" />
+    <meta property="og:locale" content="en_NG" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <script type="application/ld+json" set:html={JSON.stringify(organizationData)}></script>
+    {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>}
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <Header />
+    <div id="main-content"><slot /></div>
+    {wave && (
+      <div class="wave-separator" aria-hidden="true">
+        <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,30 Q300,0 600,30 T1200,30 L1200,60 L0,60 Z" fill="var(--primary-green)" opacity="0.85"></path>
+        </svg>
+      </div>
+    )}
+    <Footer />
+  </body>
+</html>

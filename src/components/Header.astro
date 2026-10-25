@@ -1,0 +1,79 @@
+---
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About Us' },
+  { href: '/services', label: 'Our Services' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/contact', label: 'Contact Us' },
+];
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="J.T. Resources & Konzult Ltd home">
+      <img src="/images/site/logo.png" alt="J.T. Resources & Konzult Ltd logo" width="48" height="48" />
+      <span><strong>J.T. Resources & Konzult Ltd</strong><small>Human Resource & Outsourcing Consultants</small></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Primary navigation">{navItems.map((item) => <a href={item.href} aria-current={currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href)) ? 'page' : undefined}>{item.label}</a>)}</nav>
+    <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="mobile-menu" aria-expanded="false"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" hidden>
+  <button class="menu-backdrop" type="button" aria-label="Close navigation menu"></button>
+  <aside class="menu-panel" aria-label="Mobile navigation">
+    <div class="menu-panel-header">
+      <a class="menu-brand" href="/" aria-label="J.T. Resources home">
+        <img src="/images/site/logo.png" alt="" width="42" height="42" />
+        <span><strong>J.T. Resources</strong><small>HR & Outsourcing Consultants</small></span>
+      </a>
+      <button class="menu-close" type="button" aria-label="Close navigation menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+    <div class="menu-intro"><span>Navigation</span><p>How can we help you today?</p></div>
+    <nav>
+      {navItems.map((item, index) => {
+        const icons = ['fa-house', 'fa-building', 'fa-briefcase', 'fa-newspaper', 'fa-envelope'];
+        const active = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
+        return <a href={item.href} aria-current={active ? 'page' : undefined}><i class={`fa-solid ${icons[index]}`} aria-hidden="true"></i><span>{item.label}</span><i class="fa-solid fa-chevron-right menu-link-arrow" aria-hidden="true"></i></a>;
+      })}
+    </nav>
+    <div class="menu-support">
+      <span>Need workforce support?</span>
+      <a href="/contact">Talk to our team <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+    </div>
+    <div class="menu-socials">
+      <span>Follow us</span>
+      <div>
+        <a href="https://web.facebook.com/jtkonzultltd" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/j.t.konzult_ltd/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://share.google/zfuWYIpMhYKxTiPe9" target="_blank" rel="noopener noreferrer" aria-label="Google Business Profile and reviews"><i class="fa-brands fa-google"></i></a>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const menu = document.querySelector<HTMLElement>('.mobile-menu');
+  const setMenu = (open: boolean) => {
+    if (!toggle || !menu) return;
+    toggle.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('menu-open', open);
+    if (open) {
+      menu.hidden = false;
+      requestAnimationFrame(() => {
+        menu.classList.add('is-open');
+        menu.querySelector<HTMLButtonElement>('.menu-close')?.focus();
+      });
+    } else {
+      menu.classList.remove('is-open');
+      window.setTimeout(() => { if (!menu.classList.contains('is-open')) menu.hidden = true; }, 280);
+      toggle.focus();
+    }
+  };
+  toggle?.addEventListener('click', () => setMenu(true));
+  document.querySelectorAll<HTMLButtonElement>('.menu-close, .menu-backdrop').forEach((button) => button.addEventListener('click', () => setMenu(false)));
+  menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', (event) => event.key === 'Escape' && setMenu(false));
+</script>

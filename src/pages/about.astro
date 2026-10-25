@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About Us — J.T. Resources & Konzult Ltd" description="Professional human resource and outsourcing consultants serving businesses across Nigeria.">
+  <section class="about-hero">
+    <img src="/images/site/hero-support.webp" width="1920" height="1080" alt="About Us background" />
+    <div class="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
+      <h1>About J.T. Resources & Konzult Ltd</h1>
+      <p style={{ maxWidth: '760px', margin: '0 auto', color: '#475569', fontSize: '1.06rem' }}>Professional human resource and outsourcing consultants serving businesses across Nigeria.</p>
+    </div>
+  </section>
+
+  <main>
+    <section class="section company-profile-section">
+      <div class="container company-profile-layout">
+        <div class="company-profile-copy">
+          <span class="section-kicker">Who we are</span>
+          <h2>Building dependable workforces since 1993</h2>
+          <p class="company-profile-lead">J.T. Resources & Konzult Ltd is a federal government licensed human resources management consultancy company, formed in 1993 and fully incorporated in 2011.</p>
+          <div class="company-profile-body">
+            <p>We are a professional recruitment, outsourcing, and consulting company committed to delivering quality human resource solutions across Nigeria. We connect qualified professionals with reputable organizations while helping businesses build effective, skilled, and reliable teams.</p>
+            <p>Our experienced consultants and growing client network are known for integrity, professionalism, and a results-oriented approach. We understand each client’s needs and provide solutions that support sustainable business success.</p>
+          </div>
+          <div class="company-profile-facts" aria-label="Company facts">
+            <div><strong>1993</strong><span>Established</span></div>
+            <div><strong>2011</strong><span>Incorporated</span></div>
+            <div><strong>Nationwide</strong><span>Service reach</span></div>
+          </div>
+        </div>
+
+        <div class="company-profile-visual">
+          <div class="company-profile-image">
+            <img src="/images/site/about-team.webp" alt="Two Nigerian professionals discussing workforce solutions" width="740" height="416" loading="lazy" />
+            <div class="experience-badge"><strong>30+</strong><span>Years of<br />experience</span></div>
+          </div>
+          <div class="credential-panel">
+            <div class="credential-heading"><i class="fa-solid fa-shield-halved"></i><div><span>Why clients choose us</span><h3>Trusted capability</h3></div></div>
+            <ul>
+              <li><i class="fa-solid fa-check"></i><span>Federal government licensed HR consultants</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Wide sector experience and nationwide coverage</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Integrated facility and hospitality support</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section purpose-section">
+      <div class="container">
+        <div class="purpose-layout">
+          <div class="purpose-intro">
+            <span class="purpose-kicker">What guides us</span>
+            <h2>Purpose with a clear direction</h2>
+            <p>Our vision, mission and values shape how we serve clients, support professionals and build lasting partnerships across Nigeria.</p>
+            <div class="purpose-mark" aria-hidden="true"><i class="fa-solid fa-compass"></i></div>
+          </div>
+
+          <div class="purpose-principles">
+            <article class="purpose-card">
+              <div class="purpose-icon"><i class="fa-solid fa-eye"></i></div>
+              <div>
+                <span>Where we are going</span>
+                <h3>Our Vision</h3>
+                <p>To be a leading human resource and business consulting firm in Nigeria, known for excellence, innovation, and trusted partnerships.</p>
+              </div>
+            </article>
+            <article class="purpose-card purpose-card-accent">
+              <div class="purpose-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+              <div>
+                <span>How we create impact</span>
+                <h3>Our Mission</h3>
+                <p>To provide reliable recruitment, outsourcing, and consulting services that empower individuals, strengthen organizations, and contribute to national workforce development.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="values-panel">
+          <div class="values-heading">
+            <span>How we work</span>
+            <h3>Our Core Values</h3>
+          </div>
+          <div class="values-grid">
+            <div class="value-item"><strong>Professionalism</strong><p>Consistent, high-quality service.</p></div>
+            <div class="value-item"><strong>Integrity</strong><p>Transparent and ethical practice.</p></div>
+            <div class="value-item"><strong>Innovation</strong><p>Practical, tailored solutions.</p></div>
+            <div class="value-item"><strong>Commitment</strong><p>Excellence and client satisfaction.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section leadership-section">
+      <div class="container">
+        <div class="leadership-heading">
+          <span class="section-kicker">Our leadership</span>
+          <h2>Meet the Management Team</h2>
+          <p>Experienced professionals providing the direction, discipline and sector knowledge behind every client engagement.</p>
+        </div>
+        <div class="leadership-grid">
+          {[
+            { name: 'High Chief Tony Ozobiani', role: 'Founder & CEO', image: '/images/team/chief-tony-enhanced.webp', text: 'High Chief Tony Ozobiani THE OJINEME 1 OF EMU KINGDOM Delta State is the founder of the group of businesses. A retired senior lecturer and former Director of Human resources at Le Meridien Ibom hotel & Golf resort in Uyo, Akwa-ibom State. He has set up and managed several other organisations before embarking on private business.' },
+            { name: 'Mrs. Soares Eferezi Zinnia', role: 'Managing Director / Head of Finance', image: '/images/team/soares-eferezi-zinnia-enhanced.webp', text: 'Mrs. Soares Eferezi Zinnia provides strategic leadership and financial oversight at J.T. Resources & Konzult Ltd. She combines strong business acumen with a passion for excellence, driving the company’s growth through sound financial management, innovation, and professional integrity. Her leadership ensures that the organization maintains efficiency, transparency, and consistent value delivery to clients across all sectors.' },
+            { name: 'Mrs. Agosu Endurance', role: 'Head of Marketing', image: '/images/team/agosu-endurance-enhanced.webp', text: 'Mrs. Agosu Endurance leads the marketing and business development efforts at J.T. Resources & Konzult Ltd. She is responsible for driving brand visibility, client engagement, and market growth. With a results-oriented approach and strong communication skills, she ensures the company’s services reach the right clients and industries across Nigeria.' },
+            { name: 'Mr. James Abiodun Omeiza', role: 'Head of Admin & Operations', image: '/images/team/james-abiodun-omeiza-enhanced.webp', text: 'Mr. James Abiodun Omeiza oversees the administrative and operational activities at J.T. Resources & Konzult Ltd. He ensures smooth day-to-day operations, effective coordination across departments, and efficient resource management. His dedication to excellence supports the company’s commitment to quality service delivery and organizational efficiency.' }
+          ].map((person, index) => (
+            <article class:list={["leadership-card", { "leadership-card-featured": index === 0 }]}>
+              <div class="leadership-portrait">
+                <img src={person.image} alt={`${person.name}, ${person.role}`} loading="lazy" width="1080" height="1080" />
+              </div>
+              <div class="leadership-copy">
+                <span class="leadership-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                <div class="leadership-role">{person.role}</div>
+                <h3>{person.name}</h3>
+                <p>{person.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style={{ background: 'linear-gradient(135deg, rgba(148,194,26,.18), #fff 55%, #f8fafc)' }}>
+      <div class="container">
+        <h2><i class="fa-solid fa-layer-group" style={{ marginRight: '.6rem' }}></i>Our Group</h2>
+        <div class="grid-2" style={{ marginTop: '2rem' }}>
+          <div class="soft-card" style={{ padding: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}><i class="fa-solid fa-broom" style={{ color: 'var(--green-text)', fontSize: '1.6rem' }}></i><span>Ozone Cleaning and Maintenance Services — professional cleaning, janitorial and facility maintenance.</span></div>
+          <div class="soft-card" style={{ padding: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}><i class="fa-solid fa-hotel" style={{ color: 'var(--green-text)', fontSize: '1.6rem' }}></i><span>Wazobia Affrikana Hotel — hospitality and lodging services supporting operations and staff.</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
