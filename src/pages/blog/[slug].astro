@@ -1,43 +1,17 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import cachedPosts from '../../../cache/wp_posts.json';
 import { localPosts } from '../../data/localPosts';
+import { getAllPosts, summarisePost } from '../../data/posts';
 
 export async function getStaticPaths() {
-  try {
-    const response = await fetch('https://cms.jtkonzult.com.ng/wp-json/wp/v2/posts?_embed&per_page=20', { signal: AbortSignal.timeout(8000) });
-    if (!response.ok) {
-      return [...localPosts, ...(cachedPosts as any[])].map((post) => ({ params: { slug: post.slug }, props: { post } }));
-    }
-
-    const remotePosts = await response.json() as any[];
-    const posts = [...localPosts, ...remotePosts.filter((post: any) => !localPosts.some((local) => local.slug === post.slug))];
-    return posts.map((post) => ({
-      params: { slug: post.slug },
-      props: { post }
-    }));
-  } catch {
-    return [...localPosts, ...(cachedPosts as any[])].map((post) => ({ params: { slug: post.slug }, props: { post } }));
-  }
+  return (await getAllPosts()).map((post) => ({ params: { slug: post.slug }, props: { post } }));
 }
 
 const { post } = Astro.props;
-
-if (!post) {
-  throw new Error('Post not found');
-}
-
-const legacyHiringPost = post.slug === 'top-7-qualities-employers-look-for-when-hiring-in-nigeria-2025-guide';
-const rawTitle = post.title?.rendered ? post.title.rendered.replace(/<[^>]*>/g, '') : 'Untitled';
-const title = legacyHiringPost ? rawTitle.replace(' (2025 Guide)', ' (Updated Guide)') : rawTitle;
-const excerpt = legacyHiringPost ? 'Discover the communication, teamwork, digital and problem-solving qualities Nigerian employers value when evaluating candidates.' : (post.seoDescription || (post.excerpt?.rendered ? post.excerpt.rendered.replace(/<[^>]*>/g, '') : 'Read the latest article from J.T. Resources & Konzult Ltd.'));
-const image = legacyHiringPost ? '/images/site/team-discussion.webp' : (post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/images/site/team-discussion.webp');
-const imageUrl = new URL(image, Astro.site).toString();
-const category = post._embedded?.['wp:term']?.[0]?.[0]?.name || '';
-const date = post.date ? new Date(post.date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '';
-const readingTime = post.readingTime || `${Math.max(1, Math.ceil((post.content?.rendered || '').replace(/<[^>]*>/g, ' ').split(/\s+/).length / 220))} min read`;
+const { title, seoTitle, description: excerpt, image, category, displayDate: date, readingTime } = summarisePost(post);
+const imageUrl = new URL(image.url, Astro.site).toString();
 const pageUrl = new URL(`/blog/${post.slug}/`, Astro.site).toString();
-const relatedPosts = localPosts.filter((item) => item.slug !== post.slug).slice(0, 3);
+const relatedPosts = localPosts.filter((item) => item.slug !== post.slug).slice(0, 3).map(summarisePost);
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Article',
@@ -67,17 +41,17 @@ const faqData = post.faqs?.length ? {
 const pageStructuredData = [structuredData, breadcrumbData, ...(faqData ? [faqData] : [])];
 ---
 
-<Layout title={legacyHiringPost ? 'Top Hiring Qualities Nigerian Employers Value' : (post.seoTitle || `${title} — J.T. Resources & Konzult Ltd`)} description={excerpt} ogImage={imageUrl} ogImageAlt={title} ogImageWidth={1672} ogImageHeight={941} ogImageType="image/webp" ogType="article" publishedTime={post.date} modifiedTime={post.modified || post.date} structuredData={pageStructuredData}>
+<Layout title={seoTitle} description={excerpt} ogImage={imageUrl} ogImageAlt={title} ogImageWidth={image.width} ogImageHeight={image.height} ogImageType={image.type} ogType="article" publishedTime={post.date} modifiedTime={post.modified || post.date} structuredData={pageStructuredData}>
   <section style={{ background: 'var(--deep-teal)', color: '#fff', padding: '4rem 0' }}>
     <div class="container" style={{ textAlign: 'center', maxWidth: '960px' }}>
-      <nav class="breadcrumbs breadcrumbs-light" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/blog">Insights</a><span>/</span><span aria-current="page">Article</span></nav>
+      <nav class="breadcrumbs breadcrumbs-light" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/blog/">Insights</a><span>/</span><span aria-current="page">Article</span></nav>
       <div style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.8rem' }}>{category ? `${category} • ` : ''}{date} • {readingTime}</div>
       <h1 style={{ color: '#fff', marginTop: '0.7rem', fontSize: 'clamp(2.2rem, 5vw, 3.2rem)' }}>{title}</h1>
     </div>
   </section>
 
   <main class="container section">
-    <img src={image} alt={title} width="1672" height="941" style={{ width: '100%', maxHeight: '420px', objectFit: 'cover', borderRadius: '1rem', marginBottom: '2rem' }} />
+    <img src={image.url} alt={title} width={image.width} height={image.height} style={{ width: '100%', maxHeight: '420px', objectFit: 'cover', borderRadius: '1rem', marginBottom: '2rem' }} />
 
     <div class="article-byline"><span><i class="fa-solid fa-building" aria-hidden="true"></i> J.T. Resources & Konzult Ltd</span><span>Reviewed {date}</span></div>
 
@@ -85,10 +59,10 @@ const pageStructuredData = [structuredData, breadcrumbData, ...(faqData ? [faqDa
 
     <div class="article-share" aria-label="Share this article"><strong>Share this guide</strong><a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`} target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook"><i class="fa-brands fa-facebook-f"></i></a><a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`} target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a><a href={`https://wa.me/?text=${encodeURIComponent(`${title} ${pageUrl}`)}`} target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a></div>
 
-    {relatedPosts.length > 0 && <section class="related-posts" aria-labelledby="related-heading"><h2 id="related-heading">Related HR insights</h2><div>{relatedPosts.map((item) => <article><img src={item._embedded['wp:featuredmedia'][0].source_url} width="1672" height="941" loading="lazy" alt="" /><h3><a href={`/blog/${item.slug}`}>{item.title.rendered}</a></h3><a href={`/blog/${item.slug}`}>Read article →</a></article>)}</div></section>}
+    {relatedPosts.length > 0 && <section class="related-posts" aria-labelledby="related-heading"><h2 id="related-heading">Related HR insights</h2><div>{relatedPosts.map((item) => <article><img src={item.image.url} width={item.image.width} height={item.image.height} loading="lazy" alt="" /><h3><a href={item.url}>{item.title}</a></h3><a href={item.url}>Read article →</a></article>)}</div></section>}
 
     <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-      <a class="btn btn-primary" href="/blog">Back to Blog</a>
+      <a class="btn btn-primary" href="/blog/">Back to Blog</a>
     </div>
   </main>
 </Layout>

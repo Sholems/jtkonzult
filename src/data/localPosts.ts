@@ -123,7 +123,7 @@ export const localPosts = [
       <h3>Who should own onboarding?</h3><p>HR coordinates the framework, while the line manager owns role clarity, coaching and performance. Supporting departments should have named tasks and deadlines.</p>
       <h3>Should remote and outsourced employees receive onboarding?</h3><p>Yes. Every worker needs role expectations, safety information, communication channels, policies and access to support. The delivery method can change, but the essential outcomes should remain consistent.</p>
 
-      <div class="article-cta"><h2>Build a consistent onboarding system</h2><p>J.T. Resources & Konzult Ltd helps organisations design practical HR processes and integrate new or outsourced staff effectively. Explore our <a href="/services/hr-consulting">HR consulting services</a> or <a href="/contact">contact our team</a> to discuss your workforce needs.</p></div>
+      <div class="article-cta"><h2>Build a consistent onboarding system</h2><p>J.T. Resources & Konzult Ltd helps organisations design practical HR processes and integrate new or outsourced staff effectively. Explore our <a href="/services/hr-consulting/">HR consulting services</a> or <a href="/contact/">contact our team</a> to discuss your workforce needs.</p></div>
     `
   }),
   makePost({
@@ -206,7 +206,7 @@ export const localPosts = [
       <h3>Does outsourcing remove all responsibility from the client?</h3><p>No. The client still has responsibilities for the workplace, daily coordination, safety and fulfilment of its contractual obligations. Responsibilities should be reviewed by qualified advisers and documented clearly.</p>
       <h3>How is outsourcing performance measured?</h3><p>Use agreed measures such as vacancy fill time, attendance, retention, replacement response, documentation quality, incident resolution and stakeholder satisfaction.</p>
 
-      <div class="article-cta"><h2>Plan your workforce outsourcing carefully</h2><p>J.T. Resources & Konzult Ltd supports recruitment, deployment and workforce coordination across Nigeria. Learn about our <a href="/services/labour-outsourcing">labour outsourcing service</a> or <a href="/contact">request a workforce consultation</a>.</p></div>
+      <div class="article-cta"><h2>Plan your workforce outsourcing carefully</h2><p>J.T. Resources & Konzult Ltd supports recruitment, deployment and workforce coordination across Nigeria. Learn about our <a href="/services/labour-outsourcing/">labour outsourcing service</a> or <a href="/contact/">request a workforce consultation</a>.</p></div>
     `
   }),
   makePost({
@@ -251,7 +251,7 @@ export const localPosts = [
         <li><strong>Business-critical roles</strong> directly affect revenue, safety, quality or continuity.</li>
         <li><strong>Hard-to-fill roles</strong> need scarce skills, licences or long recruitment lead times.</li>
         <li><strong>High-volume roles</strong> require efficient, repeatable sourcing and onboarding.</li>
-        <li><strong>Flexible support roles</strong> may be suitable for shared services or <a href="/services/labour-outsourcing">labour outsourcing</a>.</li>
+        <li><strong>Flexible support roles</strong> may be suitable for shared services or <a href="/services/labour-outsourcing/">labour outsourcing</a>.</li>
         <li><strong>Changing roles</strong> will be reshaped by technology, new processes or customer needs.</li>
       </ul>
       <p>This segmentation helps the organisation invest attention where a workforce gap would have the greatest impact.</p>
@@ -313,7 +313,7 @@ export const localPosts = [
       <h3>Who should participate?</h3><p>Business leaders, operations, finance and HR should work together. Managers provide demand and productivity knowledge; HR provides workforce data and talent options; finance tests affordability.</p>
       <h3>Can a small business use workforce planning?</h3><p>Yes. A simple one-page plan covering critical roles, expected demand, current capacity, major risks and actions can prevent costly hiring delays.</p>
 
-      <div class="article-cta"><h2>Turn your business plan into a workforce plan</h2><p>J.T. Resources & Konzult Ltd helps organisations assess workforce needs, recruit dependable talent and select practical staffing models. Explore our <a href="/services/hr-consulting">HR consulting</a> and <a href="/services/recruitment-staffing">recruitment services</a>, or <a href="/contact">speak with our team</a>.</p></div>
+      <div class="article-cta"><h2>Turn your business plan into a workforce plan</h2><p>J.T. Resources & Konzult Ltd helps organisations assess workforce needs, recruit dependable talent and select practical staffing models. Explore our <a href="/services/hr-consulting/">HR consulting</a> and <a href="/services/recruitment-staffing/">recruitment services</a>, or <a href="/contact/">speak with our team</a>.</p></div>
     `
   })
 ];

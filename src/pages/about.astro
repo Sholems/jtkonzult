@@ -102,18 +102,24 @@ import Layout from '../layouts/Layout.astro';
           {[
             { name: 'High Chief Tony Ozobiani', role: 'Founder & CEO', image: '/images/team/chief-tony-enhanced.webp', text: 'High Chief Tony Ozobiani THE OJINEME 1 OF EMU KINGDOM Delta State is the founder of the group of businesses. A retired senior lecturer and former Director of Human resources at Le Meridien Ibom hotel & Golf resort in Uyo, Akwa-ibom State. He has set up and managed several other organisations before embarking on private business.' },
             { name: 'Mrs. Soares Eferezi Zinnia', role: 'Managing Director / Head of Finance', image: '/images/team/soares-eferezi-zinnia-enhanced.webp', text: 'Mrs. Soares Eferezi Zinnia provides strategic leadership and financial oversight at J.T. Resources & Konzult Ltd. She combines strong business acumen with a passion for excellence, driving the company’s growth through sound financial management, innovation, and professional integrity. Her leadership ensures that the organization maintains efficiency, transparency, and consistent value delivery to clients across all sectors.' },
-            { name: 'Mrs. Agosu Endurance', role: 'Head of Marketing', image: '/images/team/agosu-endurance-enhanced.webp', text: 'Mrs. Agosu Endurance leads the marketing and business development efforts at J.T. Resources & Konzult Ltd. She is responsible for driving brand visibility, client engagement, and market growth. With a results-oriented approach and strong communication skills, she ensures the company’s services reach the right clients and industries across Nigeria.' },
-            { name: 'Mr. James Abiodun Omeiza', role: 'Head of Admin & Operations', image: '/images/team/james-abiodun-omeiza-enhanced.webp', text: 'Mr. James Abiodun Omeiza oversees the administrative and operational activities at J.T. Resources & Konzult Ltd. He ensures smooth day-to-day operations, effective coordination across departments, and efficient resource management. His dedication to excellence supports the company’s commitment to quality service delivery and organizational efficiency.' }
+            { name: 'Mrs. Agosu Endurance', role: 'General Manager, Corporate Communication', image: '/images/team/agosu-endurance-enhanced.webp', text: [
+              'Mrs. Agosu Endurance is the General Manager, Corporate Communication at J.T. Resources & Konzult Ltd. She plays a vital role in shaping the company’s corporate image, strengthening stakeholder relationships, and ensuring effective communication across the organisation.',
+              'With a strong commitment to professionalism and excellence, she contributes to promoting the company’s vision, values, and brand identity through strategic communication, public relations, and effective engagement. Her dedication to clear communication and positive corporate representation supports the organisation’s growth and reputation.'
+            ] },
+            { name: 'Mr. Matthew Ogunremi', role: 'Human Resource Manager', image: '/images/team/matthew-ogunremi.webp', width: 1080, height: 1080, text: [
+              'Mr. Matthew Ogunremi is the Human Resource Manager at J.T. Resources & Konzult Ltd, where he plays an important role in driving effective people management and supporting the organisation’s human resource objectives. He is committed to fostering a productive and positive work environment, promoting employee development, and ensuring effective human resource practices that align with the company’s goals.',
+              'With a people-centred approach to leadership, he contributes to building a motivated, professional, and high-performing workforce, recognising that people remain one of the most valuable assets of any successful organisation.'
+            ] }
           ].map((person, index) => (
             <article class:list={["leadership-card", { "leadership-card-featured": index === 0 }]}>
               <div class="leadership-portrait">
-                <img src={person.image} alt={`${person.name}, ${person.role}`} loading="lazy" width="1080" height="1080" />
+                <img src={person.image} alt={`${person.name}, ${person.role}`} loading="lazy" width={person.width ?? 1254} height={person.height ?? 1254} />
               </div>
               <div class="leadership-copy">
                 <span class="leadership-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
                 <div class="leadership-role">{person.role}</div>
                 <h3>{person.name}</h3>
-                <p>{person.text}</p>
+                {(Array.isArray(person.text) ? person.text : [person.text]).map((paragraph) => <p>{paragraph}</p>)}
               </div>
             </article>
           ))}

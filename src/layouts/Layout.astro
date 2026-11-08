@@ -13,7 +13,7 @@ import Footer from '../components/Footer.astro';
 const {
   title = 'J.T. Resources & Konzult Ltd',
   description = 'Federally licensed HR management consultancy delivering recruitment, outsourcing, consulting and facility support across Nigeria.',
-  ogImage = 'https://jtkonzult-3ei.pages.dev/images/site/social-preview.jpg',
+  ogImage = new URL('/images/site/social-preview.jpg', Astro.site).toString(),
   ogImageAlt = 'J.T. Resources & Konzult Ltd — building reliable, skilled and productive teams',
   ogImageWidth = 1200,
   ogImageHeight = 630,
@@ -36,7 +36,7 @@ const organizationData = {
   logo: 'https://jtkonzult.com.ng/images/site/logo.png',
   foundingDate: '1993',
   email: 'info@jtkonzult.com.ng',
-  telephone: ['+2349157235560', '+2348166738614', '+2347056288547', '+2348030585300'],
+  telephone: ['+2349157235560', '+2348166738614', '+2347056288547', '+2349024936757'],
   address: { '@type': 'PostalAddress', streetAddress: 'C/O Wazobia Affrikana Hotel, Emu-Ebendo', addressRegion: 'Delta State', addressCountry: 'NG' },
   areaServed: { '@type': 'Country', name: 'Nigeria' },
   sameAs: ['https://web.facebook.com/jtkonzultltd', 'https://www.instagram.com/j.t.konzult_ltd/', 'https://share.google/zfuWYIpMhYKxTiPe9']

@@ -1,12 +1,13 @@
 ---
 const navItems = [
   { href: '/', label: 'Home' },
-  { href: '/about', label: 'About Us' },
-  { href: '/services', label: 'Our Services' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/contact', label: 'Contact Us' },
+  { href: '/about/', label: 'About Us' },
+  { href: '/services/', label: 'Our Services' },
+  { href: '/blog/', label: 'Blog' },
+  { href: '/contact/', label: 'Contact Us' },
 ];
-const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const currentPath = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const isActive = (href: string) => href === '/' ? currentPath === '/' : currentPath.startsWith(href);
 ---
 
 <header class="site-header">
@@ -15,7 +16,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       <img src="/images/site/logo.png" alt="J.T. Resources & Konzult Ltd logo" width="48" height="48" />
       <span><strong>J.T. Resources & Konzult Ltd</strong><small>Human Resource & Outsourcing Consultants</small></span>
     </a>
-    <nav class="desktop-nav" aria-label="Primary navigation">{navItems.map((item) => <a href={item.href} aria-current={currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href)) ? 'page' : undefined}>{item.label}</a>)}</nav>
+    <nav class="desktop-nav" aria-label="Primary navigation">{navItems.map((item) => <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>)}</nav>
     <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="mobile-menu" aria-expanded="false"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
   </div>
 </header>
@@ -34,13 +35,12 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     <nav>
       {navItems.map((item, index) => {
         const icons = ['fa-house', 'fa-building', 'fa-briefcase', 'fa-newspaper', 'fa-envelope'];
-        const active = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
-        return <a href={item.href} aria-current={active ? 'page' : undefined}><i class={`fa-solid ${icons[index]}`} aria-hidden="true"></i><span>{item.label}</span><i class="fa-solid fa-chevron-right menu-link-arrow" aria-hidden="true"></i></a>;
+        return <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}><i class={`fa-solid ${icons[index]}`} aria-hidden="true"></i><span>{item.label}</span><i class="fa-solid fa-chevron-right menu-link-arrow" aria-hidden="true"></i></a>;
       })}
     </nav>
     <div class="menu-support">
       <span>Need workforce support?</span>
-      <a href="/contact">Talk to our team <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      <a href="/contact/">Talk to our team <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
     </div>
     <div class="menu-socials">
       <span>Follow us</span>

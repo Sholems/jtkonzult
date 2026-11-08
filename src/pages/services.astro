@@ -5,7 +5,7 @@ import { services } from '../data/services';
 
 <Layout title="Our Services — J.T. Resources & Konzult Ltd" description="Comprehensive HR and business support services for organizations across Nigeria.">
   <section style={{ position: 'relative', background: '#0f172a', color: '#fff', minHeight: '360px', display: 'grid', placeItems: 'center', overflow: 'hidden' }}>
-    <img src="/images/site/team-discussion.webp" width="740" height="416" alt="HR consultants discussing workforce solutions" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.45 }} />
+    <img src="/images/site/team-discussion.webp" width="1920" height="1080" alt="HR consultants discussing workforce solutions" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.45 }} />
     <div style={{ position: 'relative', zIndex: 1, width: 'min(800px, calc(100% - 2rem))', textAlign: 'center' }}>
       <h1 style={{ color: '#fff', fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>Our Services</h1>
       <p style={{ color: 'rgba(255,255,255,0.92)', maxWidth: '720px', margin: '0 auto' }}>At J.T. Resources & Konzult Ltd, we provide comprehensive human resource and business support services designed to help organizations grow, stay productive, and achieve lasting success.</p>
@@ -19,7 +19,7 @@ import { services } from '../data/services';
           <div style={{ fontSize: '3rem', color: 'var(--deep-teal)', marginBottom: '1rem' }}><i class={`fa-solid ${service.icon}`}></i></div>
           <h2 style={{ fontSize: '1.3rem', marginBottom: '0.8rem' }}>{service.title}</h2>
           <p style={{ color: '#475569' }}>{service.summary}</p>
-          <a class="text-link" href={`/services/${service.slug}`}>Explore this service →</a>
+          <a class="text-link" href={`/services/${service.slug}/`}>Explore this service →</a>
         </div>
       ))}
     </div>
@@ -27,7 +27,7 @@ import { services } from '../data/services';
     <div style={{ marginTop: '3rem', background: 'var(--deep-teal)', color: '#fff', padding: '2rem 1.5rem', textAlign: 'center', borderRadius: '1rem' }}>
       <h3 style={{ color: '#fff' }}>Not sure which service you need?</h3>
       <p style={{ color: 'rgba(255,255,255,0.85)' }}>Talk to our consultants today for a free consultation and tailored recommendation.</p>
-      <a class="btn btn-primary" href="/contact" style={{ marginTop: '1rem', background: 'var(--primary-green)', color: 'var(--on-green)' }}>Contact Us</a>
+      <a class="btn btn-primary" href="/contact/" style={{ marginTop: '1rem', background: 'var(--primary-green)', color: 'var(--on-green)' }}>Contact Us</a>
     </div>
   </main>
 </Layout>

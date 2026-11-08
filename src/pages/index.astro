@@ -1,8 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { localPosts } from '../data/localPosts';
+import { summarisePost } from '../data/posts';
 
-const featuredPosts = localPosts.slice(0, 3);
+const featuredPosts = localPosts.slice(0, 3).map(summarisePost);
 ---
 
 <Layout title="HR Consultancy & Labour Outsourcing in Nigeria | J.T. Resources" description="Licensed Nigerian HR consultancy providing recruitment, labour outsourcing, HR consulting, training, PPE supply and facility support nationwide." wave>
@@ -15,8 +16,8 @@ const featuredPosts = localPosts.slice(0, 3);
           <h1>Building Reliable, Skilled and Productive Teams Across Nigeria</h1>
           <p>We deliver recruitment, labour outsourcing, HR consulting, training, PPE supply and facility support with integrity and a nationwide reach. Trusted since 1993.</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.85rem', marginTop: '2rem' }}>
-            <a class="btn btn-primary" href="/contact">Request HR Support</a>
-            <a class="btn btn-secondary" href="/services" style={{ color: '#fff', borderColor: '#fff' }}>View Our Services</a>
+            <a class="btn btn-primary" href="/contact/">Request HR Support</a>
+            <a class="btn btn-secondary" href="/services/" style={{ color: '#fff', borderColor: '#fff' }}>View Our Services</a>
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginTop: '2rem' }}>
             <div style={{ padding: '0.9rem 1rem', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', minWidth: '150px' }}>
@@ -44,7 +45,7 @@ const featuredPosts = localPosts.slice(0, 3);
             </div>
           </div>
           <div style={{ textAlign: 'right' }}>
-            <a class="btn btn-primary" href="/contact">Get Support</a>
+            <a class="btn btn-primary" href="/contact/">Get Support</a>
           </div>
         </div>
       </div>
@@ -65,8 +66,8 @@ const featuredPosts = localPosts.slice(0, 3);
             <li><i class="fa-solid fa-check" style={{ color: 'var(--green-text)', marginRight: '0.75rem' }}></i><strong>Coverage:</strong> Major commercial centres across Nigeria</li>
           </ul>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.8rem', marginTop: '2rem' }}>
-            <a class="btn btn-primary" href="/about">Learn More</a>
-            <a class="btn btn-secondary" href="/contact">Contact Us</a>
+            <a class="btn btn-primary" href="/about/">Learn More</a>
+            <a class="btn btn-secondary" href="/contact/">Contact Us</a>
           </div>
         </div>
       </div>
@@ -97,7 +98,7 @@ const featuredPosts = localPosts.slice(0, 3);
           ))}
         </div>
         <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
-          <a class="btn btn-primary" href="/services" style={{ background: '#fff', color: '#326664' }}>Explore All Services</a>
+          <a class="btn btn-primary" href="/services/" style={{ background: '#fff', color: '#326664' }}>Explore All Services</a>
         </div>
       </div>
     </section>
@@ -177,28 +178,22 @@ const featuredPosts = localPosts.slice(0, 3);
             <h2>Latest HR Insights</h2>
             <p>Practical guidance to help Nigerian organisations build stronger teams, improve workforce systems and make informed people decisions.</p>
           </div>
-          <a class="btn btn-secondary" href="/blog">View All Insights</a>
+          <a class="btn btn-secondary" href="/blog/">View All Insights</a>
         </div>
         <div class="home-insights-grid">
-          {featuredPosts.map((post) => {
-            const title = post.title.rendered;
-            const category = post._embedded['wp:term'][0][0].name;
-            const image = post._embedded['wp:featuredmedia'][0].source_url;
-            const date = new Date(post.date).toLocaleDateString('en-NG', { day: 'numeric', month: 'short', year: 'numeric' });
-            return (
-              <article class="home-insight-card">
-                <a class="home-insight-image" href={`/blog/${post.slug}`} aria-label={`Read ${title}`}>
-                  <img src={image} alt={title} width="1672" height="941" loading="lazy" />
-                </a>
-                <div class="home-insight-copy">
-                  <div class="home-insight-meta"><span>{category}</span><time datetime={post.date}>{date}</time></div>
-                  <h3><a href={`/blog/${post.slug}`}>{title}</a></h3>
-                  <p>{post.seoDescription}</p>
-                  <a class="home-insight-link" href={`/blog/${post.slug}`}>Read article <span aria-hidden="true">→</span></a>
-                </div>
-              </article>
-            );
-          })}
+          {featuredPosts.map((post) => (
+            <article class="home-insight-card">
+              <a class="home-insight-image" href={post.url} aria-label={`Read ${post.title}`}>
+                <img src={post.image.url} alt={post.title} width={post.image.width} height={post.image.height} loading="lazy" />
+              </a>
+              <div class="home-insight-copy">
+                <div class="home-insight-meta"><span>{post.category}</span><time datetime={post.date}>{post.displayDate}</time></div>
+                <h3><a href={post.url}>{post.title}</a></h3>
+                <p>{post.description}</p>
+                <a class="home-insight-link" href={post.url}>Read article <span aria-hidden="true">→</span></a>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -215,7 +210,7 @@ const featuredPosts = localPosts.slice(0, 3);
               <h3>Ozone Cleaning & Maintenance</h3>
             </div>
             <p style={{ color: '#475569' }}>Professional cleaning, janitorial and maintenance services for offices, factories and residential clients.</p>
-            <a href="/services/cleaning-janitorial-services" style={{ color: 'var(--deep-teal)', fontWeight: 700 }}>Learn More →</a>
+            <a href="/services/cleaning-janitorial-services/" style={{ color: 'var(--deep-teal)', fontWeight: 700 }}>Learn More →</a>
           </article>
 
           <article class="soft-card card-hover" style={{ padding: '1.5rem' }}>
@@ -224,7 +219,7 @@ const featuredPosts = localPosts.slice(0, 3);
               <h3>Wazobia Affrikana Hotel</h3>
             </div>
             <p style={{ color: '#475569' }}>Hospitality and lodging services that support operations and staff.</p>
-            <a href="/contact" style={{ color: 'var(--deep-teal)', fontWeight: 700 }}>Learn More →</a>
+            <a href="/contact/" style={{ color: 'var(--deep-teal)', fontWeight: 700 }}>Learn More →</a>
           </article>
         </div>
       </div>
@@ -234,7 +229,7 @@ const featuredPosts = localPosts.slice(0, 3);
       <div class="container" style={{ textAlign: 'center' }}>
         <h2 style={{ color: '#fff' }}>Need Trusted HR & Outsourcing Support?</h2>
         <p style={{ maxWidth: '720px', margin: '0 auto', color: 'rgba(255,255,255,0.9)' }}>Our team responds quickly with tailored solutions for recruitment, outsourcing and facility support.</p>
-        <a class="btn btn-primary" href="/contact" style={{ marginTop: '1.5rem', background: 'var(--primary-green)', color: '#0f172a' }}>Contact Our Team</a>
+        <a class="btn btn-primary" href="/contact/" style={{ marginTop: '1.5rem', background: 'var(--primary-green)', color: '#0f172a' }}>Contact Our Team</a>
       </div>
     </section>
   </main>
